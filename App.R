@@ -6,6 +6,7 @@ library(dplyr)
 library(Hmisc)
 library(matrixStats)
 library(ComplexHeatmap)
+library(circlize)
 options(repos = BiocManager::repositories())
 
 
@@ -210,8 +211,12 @@ server <-function(input, output) {
     #datos_heat <- as.data.frame(t(datos))
     datos_exp <- as.matrix(datos[,4:length(colnames(datos))])
     
+    ##Obtenemos los valores minimos y maximos
+    minimo <- min(datos_exp)
+    maximo <- max(datos_exp)
     
-    Heatmap(datos_exp)
+    
+    Heatmap(datos_exp, col=colorRamp2(c(minimo, 0, maximo), c("blue", "white", "red")))
     
     
     
