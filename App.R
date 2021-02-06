@@ -220,7 +220,7 @@ server <-function(input, output) {
     
     
     
-    ha <- HeatmapAnnotation(foo = anno_empty(border = TRUE, width = unit(60, "native")),
+    ha <- HeatmapAnnotation(foo = anno_empty(border = TRUE, width = unit(20, "points")),
                             which = "row",
                             gap= unit(2,"points"))
     
@@ -236,8 +236,9 @@ server <-function(input, output) {
                          row_order = orden_rows,
                          column_names_rot = 45 ,left_annotation = ha,
                          row_names_gp = gpar(fontsize = 10),
-                         width = unit(10, "inches"), height = unit(10, "inches"))#,
-    #row_names_gp = gpar(fontsize = 8,col = ifelse(vals> 0, "red", ifelse(vals== 0, "black", "blue"))))
+                         col=colorRamp2(c(minimo, 0, maximo), c("blue", "white", "red")),
+                         heatmap_width = unit(8, "inches"), heatmap_height = unit(8, "inches"))#,
+    
     
     
     
@@ -279,7 +280,7 @@ server <-function(input, output) {
       popViewport()
       lgd = Legend(labels = c("Bueno","Malo"), type = "points", pch = c(21,21),title = "Pronostico",
                    legend_gp = gpar(fill = c("white","black")))
-      draw(lgd, x = unit(14.5, "npc"), y = unit(0.3, "npc"), just = c("right", "bottom"))
+      draw(lgd, x = unit(32, "npc"), y = unit(0.3, "npc"), just = c("right", "bottom"))
       popViewport()
       #####
       #Plot para graficar
